@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<map proto="1.3.0">
+<name>Wasted</name>
+<version>1.0.0</version>
+<objective>Leak the enemys core</objective>
+ 
+<rules>
+   <rule>Do not spawn kill</rule>
+   <rule>Do not Team Grief</rule>
+</rules>
+ 
+<authors>
+    <author>HardstyleRaver2</author>
+</authors>
+ 
+<contributors>
+   <contributor contribution="Building and feedback">BlockDrop74</contributor>
+   <contributor contribution="Feedback and support">Draco_Rogue</contributor>
+   <contributor contribution="XML">orky48</contributor>
+</contributors>
+ 
+<teams>
+    <team color="dark red" max="30">Red Team</team>
+    <team color="blue" max="30">Blue Team</team>
+</teams>
+ 
+<spawns>
+    <spawn team="red" kit="red" yaw="180">
+        <cuboid min="2,10,679" max="2,10,679"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="0">
+        <cuboid min="4,10,485> max="4,10,485"/>
+    </spawn>
+    <default yaw="90">
+        <cuboid min="1,71,586" max="6,72,580"/>
+    </default>
+</spawns>
+ 
+<kits>
+    <kit name="spawn">
+        <item slot="0">shears</item>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <chestplate color="cd0000">leather chestplate</chestplate>
+    </kit>
+   <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <chestplate color="0066cc">leather chestplate</chestplate>
+    </kit>
+</kits>
+ 
+<regions>
+    <apply enter="only-red" message="You are not allowed in the enemy team's spawn room!">
+        <cuboid min="-6,17,671" max="11,8,688"/>
+    </apply>
+    <apply enter="only-blue" message="You are not allowed in the enemy team's spawn room!">
+        <cuboid min="13,17,493" max="-4,8,477"/>
+    </apply>
+    <apply block="deny-all" message="You may not interact with blocks in either teams spawn rooms!">
+        <cuboid min="-6,17,671" max="11,8,688"/>
+        <cuboid min="13,17,493" max="-4,8,477"/>
+    </apply>
+        <apply block="deny-all" message="You may not build outside the map!">
+        <negative>
+            <rectangle min="59,461" max="-50,704"/>
+        </negative>
+    </apply
+</regions>
+ 
+<cores material="obsidian" leak="5">
+    <core team="red">
+        <cuboid min="1,22,634" max="6,27,629"/>
+    </core>
+    <core team="blue">
+        <cuboid min="6,22,531" max="1,27,535"/>
+    </core>
+</cores>
+ 
+<maxbuildheight>57</maxbuildheight>
+ 
+<itemremove>
+    <item>obsidian</item>
+    <item>shears</item>
+</itemremove>
+ 
+<toolrepair>
+    <tool>Leather helmet</tool>
+    <tool>Leather chestplate</tool>
+</toolrepair>
+ 
+</map>

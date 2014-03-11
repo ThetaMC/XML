@@ -1,0 +1,42 @@
+<map proto="1.3.1">
+    <name>Airship Aces</name>
+    <version>1.0.0</version>
+    <objective>
+        Leak lava into the void below to win!
+    </objective>
+    <authors>
+        <author>koipen</author>
+    </authors>
+    <contributors>
+        <contributor contribution="Aesthetics">Eclipsen</contributor>
+        <contributor contribution="XML">orky48</contributor>
+    </contributors>
+    <teams>
+        <team color="blue" max="10" max-overfill="10">Blue Team</team>
+        <team color="dark red" max="10" max-overfill="10">Red Team</team>
+    </teams>
+    <spawns>
+        <spawn team="blue" yaw="0">
+            <cuboid min="-23,60,-54" max="-20,61,-51"/>
+        </spawn>
+        <spawn team="red" yaw="180">
+            <cuboid min="-23,60,-83" max="-20,61,-87"/>
+        </spawn>
+        <default yaw="90">
+            <cuboid min="-23,59,-70" max="-20,60,-66">
+        </default>
+     </spawns>
+    <maxbuildheight>90</maxbuildheight>
+    <regions>
+        <rectangle name="main-area" min="-120,-125" max="-43,-11"/>
+        <apply block="deny-block" message="You may not build in the void!">
+            <negative>
+                <region name="main-area"/>
+            </negative>
+        </apply>
+    </regions>
+    <cores material="obsidian" leak="7">
+        <core team="blue"><sphere origin="104.5,60,-100" radius="2"/></core>
+        <core team="blue"><sphere origin="104.5,60,-37.5" radius="2"/></core>
+    </cores>
+</map>

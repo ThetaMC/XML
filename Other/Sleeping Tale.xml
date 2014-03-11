@@ -1,0 +1,328 @@
+<map proto="1.3.1">
+    <name>Sleeping Tale</name>
+    <version>1.2.1</version>
+    <objective>
+        Attackers must capture the defenders wool withing 20 minutes. Defenders must defend the wool for 20 minutes
+    </objective>
+    <authors>
+        <author>orky48</author>
+        <author>OllieGamerZ</author>
+    </authors>
+    <contributors>
+        <contributor contribution="Feedback and wool room help">Tywnis</contributor>
+        <contributor contribution="Back wall design and feedback">Lyzak</contributor>
+        <contributor contribution="Major XML help">ElectroidFilms</contributor>
+    </contributors>
+    <rules>
+        <rule>Do not steal other players block drops!</rule>
+    </rules>
+    <teams>
+        <team color="blue" max="12" max-overfill="12">Defenders</team>
+        <team color="light purple" max="8" max-overfill="8">Attackers</team>
+    </teams>
+    <kits>
+        <kit name="spawn">
+            <item slot="0">wood pickaxe</item>
+            <item slot="1" amount="10">apple</item>
+            <potion duration="2" amplifier="1">heal</potion>
+        </kit>
+    </kits>
+    <spawns>
+        <spawn team="attackers" kit="spawn" yaw="0">
+            <block>142.5,28,-104.5</block>
+        </spawn>
+        <spawn team="defenders" kit="spawn" yaw="180">
+            <block>175.5,18,88.5"</block>
+        </spawn>
+        <default yaw="-90">
+            <block>104.5,46,-45.5</block>
+        </default>
+    </spawns>
+    <filters>
+        <filter name="spawn-protection" parents="deny-blocks deny-players">
+            <!--Classes items-->
+            <allow>
+                <block>web</block>
+                <block>brick</block>
+                <block>lapis ore</block>
+                <block>redstone ore</block>
+                <block>diamond block</block>
+                <block>obsidian</block>
+            </allow>
+        </filter>
+        <filter name="magenta-wool" parents="deny-world deny-players">
+            <allow>
+                <team>attackers</team>
+            </allow>
+        </filter>
+        <filter name="wool-spawner" parents="allow-block">
+            <deny>
+                <block>spawner</block>
+            </deny>
+        </filter>
+        <filter name="no-void" parents="allow-all">
+            <deny><void/></deny>
+        </filter>
+        <filter name="portal-defender" parents="deny-players">
+            <allow>
+                <team>defenders</team>
+            </allow>
+        </filter>
+    </filters>
+    <regions>
+        <union name="spawns">
+            <rectangle name="Defenders-spawn" min="165,58" max="186,95"/>
+            <rectangle name="Attackers-spawn" min="114,-91" max="171,-119"/>
+        </union>
+        <rectangle name="defenders-area" min="96,95" max="189,20"/>
+        <apply block="no-void" message="You may not edit this area!">
+            <negative>
+                <cuboid min="106,0,3" max="179,35,11"/>
+            </negative>
+        </apply>
+        <union name="portals">
+            <cylinder base="142.5,16,-1.5" radius="2" height="2"/>
+            <cylinder base="142.5,27,27.5" radius="2" height="2"/>
+        </union>
+        <apply enter="portal-defender">
+            <region name="portals"/>
+        </apply>
+        <apply block="deny-blocks">
+            <region name="portals"/>
+        </apply>
+        <apply block="spawn-protection">
+            <region name="spawns"/>
+        </apply>
+        <apply enter="spawn-protection">
+            <region name="spawns"/>
+        </apply>
+        <apply block="magenta-wool" message="You may not edit blocks in your wool room!">
+            <circle name="wool-room" center="107.5,84.5" radius="9"/>
+        </apply>
+        <apply enter="magenta-wool" message="You may not enter your own wool room!">
+            <region name="wool-room"/>
+        </apply>
+        <apply block="wool-spawner" message="You may not break the spawner!">
+            <region name="wool-room"/>
+        </apply>
+    </regions>
+    <wools team="attackers">
+        <wool color="magenta">
+            <block>142.5,17,-91.5</block>
+        </wool>
+    </wools>
+    <time result="defenders">20m</time>
+    <maxbuildheight>35</maxbuildheight>
+    <difficulty>3</difficulty>
+    <itemremove>
+        <item>string</item>
+        <item>brick</item>
+        <item>flint</item>
+        <item>redstone</item>
+        <item>lapis</item>
+        <item>diamond block</item>
+    </itemremove>
+    <toolrepair>
+        <tool>iron helmet</tool>
+        <tool>iron chestplate</tool>
+        <tool>iron leggings</tool>
+        <tool>iron boots</tool>
+        <tool>diamond chestplate</tool>
+        <tool>diamond leggings</tool>
+        <tool>chainmail helmet</tool>
+        <tool>chainmail chestplate</tool>
+        <tool>chainmail leggings</tool>
+        <tool>chainmail boots</tool>
+        <tool>leather helmet</tool>
+        <tool>leather chestplate</tool>
+        <tool>leather leggings</tool>
+        <tool>leather boots</tool>
+        <tool>wood sword</tool>
+        <tool>iron sword</tool>
+        <tool>stone sword</tool>
+        <tool>bow</tool>
+        <tool>iron pickaxe</tool>
+        <tool>wood pickaxe</tool>
+        <tool>stone pickaxe</tool>
+    </toolrepair>
+    <blockdrops>
+        <rule>
+            <block>coal ore</block>
+            <drops>
+                <item amount="2">TNT</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>iron ore</block>
+            <drops>
+                <item amount="2">iron ingot</item>
+            </drops>
+        </rule>
+        <!--Attackers Blocks-->
+        <rule>
+            <block>birck</block>
+            <drops>
+                <item>wood sword</item>
+                <item>leather leggings</item>
+                <item>bow</item>
+                <item amount="16">arrow</item>
+                <item amount="16">wood</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>lapis ore</block>
+            <drops>
+                <item>wood sword</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">leather leggings</item>
+                <item>leather chestplate</item>
+                <item>bow</item>
+                <item amount="32">arrow</item>
+                <item amount="32">log</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>redstone ore</block>
+            <drops>
+                <item>stone sword</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1 PROTECTION_FIRE:1">leather leggings</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">leather chestplate</item>
+                <item>bow</item>
+                <item amount="48">arrow</item>
+                <item amount="48">log</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>diamond block</block>
+            <drops>
+                <item>stone sword</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">chainmail leggings</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">chainmail chestplate</item>
+                <item enchantment="PROTECTION_PROJECTILE:1">leather helmet</item>
+                <item enchantment="PROTECTION_PROJECTILE:1">leather boots</item>
+                <item>bow</item>
+                <item amount="64">arrow</item>
+                <item amount="64">log</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>obsidian</block>
+            <drops>
+                <item enchantment="DAMAGE_ALL:2">iron sword</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">diamond leggings</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:1">diamond chestplate</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:2">iron helmet</item>
+                <item enchantment="PROTECTION_ENVIRONMENTAL:2">iron boots</item>
+                <item enchantment="ARROW_FIRE:1 ARROW_KNOCKBACK:2 ARROW_DAMAGE:2">bow</item>
+                <item amount="64">arrow</item>
+                <item amount="64">log</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <!--Defenders Drops-->
+        <rule>
+            <block>anvil</block>
+            <drops>
+                <item>iron pickaxe</item>
+                <item>stone sword</item>
+                <item>bow</item>
+                <item amount="32">arrows</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+        <rule>
+            <block>iron block</block>
+            <drops>
+                <item>iron helmet</item>
+                <item>chainmail chestplate</item>
+                <item>chainmail leggings</item>
+                <item>iron boots</item>
+                <item amount="16">log</item>
+            </drops>
+            <wrongtool>true</wrongtool>
+        </rule>
+    </blockdrops>
+    <include src="tutorial.xml"/>
+    <tutorial>
+        <stage title="A/D Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lAttack/Defend Capture the Wool `r(CTW) map</line>
+            <line>The objective for the attackers is to grab the wool on the other team's side and return it to your base. Defends must guard it for 20 minutes</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="50">108,26,55</point>
+        </teleport>
+        </stage>
+        <stage title="Attackers Spawn">
+        <message>
+            <line>This is where the `dattackers 'rwill spawn. They get delayed for one minute the first time</line>
+            <line>'lBreak 'rthe blocks on the floor to get a kit</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="50">143,30,-85</point>
+        </teleport>
+        </stage>
+        <stage title="Victory Monument">
+        <message>
+            <line>This where you have to place the 'dmagenta 'rwool in order to win the game!</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="50">142,16,-88</point>
+        </teleport>
+        </stage>
+        <stage title="Coal and Iron Cave">
+        <message>
+            <line>This cave is rich in iron and coal ore. Coal ore drops two 'l'4TNT 'r blocks.</line>
+        </message>
+        <teleport>
+            <point yaw="0" pitch="50">145,20</point>
+        </teleport>
+        </stage>
+    </tutorial>
+    <portals>
+        <!-- Portal low to high -->
+        <portal y="11" z="28">
+            <cuboid name="portal-1" min="142,19,-2" max="143,16,-1"/>
+        </portal>
+        <!-- Portal high to low -->
+        <portal y="-11" z="-28">
+            <cuboid name="portal-2" min="142,30,27" max="143,27,28"/>
+        </portal>
+    </portals>
+    <proximity-alarms>
+        <proximity-alarm message="A attacker has entered the wool room!" flare-radius="11">
+            <region>
+                <region name="wool-room"/>
+            </region>
+            <detect>
+                <team>attackers</team>
+            </detect>
+        </proximity-alarm>
+    </proximity-alarms>
+    <renewables>
+    <!--Defenders renewables -->
+        <renewable rate="1" grow="false" particles="false" sound="false" avoid-entities="false">
+            <region>
+                <cuboid min="124,16,-98" max="160,16,-93"/>
+            </region>
+            <renew>brick</renew>
+            <renew>redstone ore</renew>
+            <renew>lapis ore</renew>
+            <renew>diamond block</renew>
+            <renew>obsidian</renew>
+            <replace>air</replace>
+        </renewable>
+        <renewable rate="1" grow="false" particles="false" sound="false" avoid-entities="false">
+            <region>
+                <cuboid min="165,14,58" max="186,18,95"/>
+            </region>
+            <renew>anvil</renew>
+            <renew>iron block</renew>
+            <replace>air</replace>
+        </renewable>
+    </renewables>
+</map>

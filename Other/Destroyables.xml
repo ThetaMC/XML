@@ -1,0 +1,9 @@
+    <destroyables name="Monument" materials="obsidian" completion="100%">
+        <destroyable owner="orange">
+            <cuboid min="-73.5,37,-116.5" max="-73.5,35,-116.5"/>
+        </destroyable>
+        <destroyable owner="purple">
+            <cuboid min="-73,37,43" max="-73,35,43"/>
+        </destroyable>
+    </destroyables>
+            

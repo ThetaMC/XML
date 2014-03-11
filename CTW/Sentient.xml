@@ -1,0 +1,300 @@
+<map proto="1.3.1">
+<name>Sentient</name> 
+<version>Beta 1.0</version> 
+<objective>
+    Capture the 2 enemy wools whilst defending yours!</objective>
+<authors>
+    <author>lonelyhornet</author>
+</authors>
+<contributors>
+    <contributor contribution="Help with aesthetics, and feedback.">Tywnis</contributor>
+    <contributor contribution="Gameplay advice, tips and help.">Lyzak</contributor>
+</contributors>
+<include src="tutorial.xml"/>
+<teams>
+   <team color="dark red" max="30" max-overfill="40">Red Team</team>
+   <team color="blue" max="30" max-overfill="40">Blue Team</team>
+</teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1">bow</item>
+        <item slot="2">iron pickaxe</item>
+        <item slot="3">iron axe</item>
+        <item slot="4" amount="64">wood</item>
+        <item slot="5" amount="64">ladder</item>
+        <item slot="6">water bucket</item>
+        <item slot="7" damage="8229">potion</item>
+        <item slot="8">pumpkin pie</item>
+        <item slot="28" amount="64">arrow</item>
+        <item slot="19" amount="64">arrow</item>
+        <item slot="31" amount="64">cobblestone</item>
+        <potion duration="5" amplifier="1">heal</potion>
+    </kit>
+    <kit name="red" parents="spawn">
+        <chestplate color="993333">leather chestplate</chestplate>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <chestplate color="334CB2">leather chestplate</chestplate>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="90">
+        <cuboid min="79,18,151" max="79,18,149"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="90">
+        <cuboid min="234,18,151" max="237,18,149"/>
+    </spawn>
+    <default yaw="180">
+        <cylinder base="157,49,206" radius="2" height="2"/>
+    </default>
+</spawns>
+<filters>
+    <filter name="blue-redstone">
+        <any>
+            <not>
+                <all>
+                    <team>blue</team>
+                    <block>redstone block</block>
+                </all>
+            </not>
+            <team>red</team>
+        </any>
+    </filter>
+    <filter name="red-redstone">
+        <any>
+            <not>
+                <all>
+                    <team>blue</team>
+                    <block>redstone block</block>
+                </all>
+            </not>
+            <team>red</team>
+        </any>
+    </filter>
+    <filter name="no-void" parents="deny-blocks">
+        <deny><void/></deny>
+    </filter>
+    <filter name="only-blue" parents="deny-world deny-players">
+        <allow><team>blue</team></allow>
+    </filter>
+    <filter name="only-red" parents="deny-world deny-players">
+        <allow><team>red</team></allow>
+    </filter>
+    <filter name="deny-tnt" parents="allow-blocks">
+        <deny><block>TNT</block></deny>
+    </filter>
+    <!--Teams Spawns-->
+    <filter name="only-iron" parents="deny-blocks">
+        <allow><block>iron block</block></allow>
+    </filter>
+    <filter name="red-spawn" parents="deny-players">
+        <alllow><team>red</team></alllow>
+    </filter>
+    <filter name="blue-spawn" parents="deny-players">
+        <alllow><team>blue</team></alllow>
+    </filter>
+</filters>
+<regions>
+    <union name="spawns">
+        <union name="blue-spawn">
+            <rectangle min="228,128" max="245,172"/>
+            <rectangle min="214,140" max="258,161"/>
+        </union>
+        <union name="red-spawn">
+            <rectangle min="70,127" max="87,173"/>
+            <rectangle min="57,139" max="100,161"/>
+        </union>
+    </union>
+    <apply block="only-iron" message="You may only break iron blocks in spawns!">
+        <region name="spawns"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter the other team's spawn!">
+        <region name="red-spawn"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter the other team's spawn!">
+        <region name="red-blue"/>
+    </apply>
+    <union name="wool-rooms">
+        <!-- the rooms blue has to get -->
+        <union name="Blue-woolrooms">
+            <rectangle name="Lightblue-wool" min="46,22" max="33,170"/>
+            <rectangle name="Cyan-wool" min="46,130" max="33,112"/>
+        </union>
+        <!-- the rooms red has to get -->
+        <union name="Red-woolrooms">
+            <rectangle name="Purple-wool" min="267,112" max="280,130"/>
+            <rectangle name="Magenta-wool" min="267,170" max="280,188"/>
+        </union>
+    </union>
+    <apply block="deny-tnt">
+        <region name="wool-rooms"/>
+    </apply>
+    <apply block="only-blue">
+        <region name="Blue-woolrooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool room!">
+	    <region name="Blue-woolrooms"/>
+    </apply>
+    <apply block="only-red" use="only-red">
+	    <region name="Red-woolrooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool room!">
+	    <region name="Red-woolrooms"/>
+    </apply>
+    <!--Preventing teams from going into the void -->
+    <apply block="no-void" message="You may not edit the void area!">
+        <negative>
+            <rectangle name="middle" min="137,113" max="177,188"/>
+        </negative>
+    </apply>
+    </regions>
+<wools team="blue">
+    <wool color="cyan">                  
+        <block>230,18,150</block>
+   </wool>
+   <wool color="light blue">
+        <block>240,18,150</block>
+   </wool>
+</wools>
+<wools team="red">
+   <wool color="magenta">                  
+        <block>73,18,150</block>
+   </wool>
+   <wool color="purple">
+ 		<block>83,18,150</block>
+   </wool>
+</wools>
+<proximity-alarms>
+    <proximity-alarm message="Enemy detected at `3cyan wool!" flare-radius="4">
+        <region>
+            <cylinder base="37,23,121" radius="9" height="10"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+       <proximity-alarm message="Enemy detected at `blight blue wool!" flare-radius="4">
+        <region>
+            <cylinder base="37,23,121" radius="9" height="10"/>
+        </region>
+        <detect>
+            <team>blue</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+<proximity-alarms>
+    <proximity-alarm message="Enemy detected at `dmagenta wool!" flare-radius="4">
+        <region>
+            <cylinder base="276,23,179" radius="9" height="10"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+       <proximity-alarm message="Enemy detected at `5purple blue wool!" flare-radius="4">
+        <region>
+            <cylinder base="276,23,121" radius="9" height="10"/>
+        </region>
+        <detect>
+            <team>red</team>
+        </detect>
+    </proximity-alarm>
+</proximity-alarms>
+<portals>
+    <portal x="@222" y="@21" z="@150">
+        <block name="Blueteleporter 1">227,17,147</block>
+    </portal>
+    <portal x="@222" y="@21" z="@150">
+        <block name="Blueteleporter 2">227,17,153</block>
+    </portal>
+    <portal x="@248" y="@21" z="@150">
+        <block name="Blueteleporter 3">243,17,153</block>
+    </portal>
+    <portal x="@248" y="@21" z="@150">
+        <block name="Blueteleporter 4">243,17,147</block>
+    </portal>
+</portals>
+<portals>
+    <portal x="@65" y="@21" z="@150">
+        <block name="Redteleporter 1">70,17,153</block>
+    </portal>
+    <portal x="@65" y="@21" z="@150">
+        <block name="Redteleporter 2">70,17,147</block>
+    </portal>
+    <portal x="@248" y="@21" z="@150">
+        <block name="Redteleporter 3">86,17,147</block>
+    </portal>
+    <portal x="@248" y="@21" z="@150">
+        <block name="Redteleporter 4">85,17,153</block>
+    </portal>
+</portals>
+<itemremove>
+    <item>redstone block</item>
+    <item damage="8229">potion</item>
+    <item>pumpkin pie</item>
+    <item>string</item>
+    <item>cobble wall</item>
+</itemremove>
+<toolrepair>
+	<tool>leather chestplate</tool>
+	<tool damage="8229">potion</tool>
+	<tool>water bucket</tool>
+	<tool>iron sword</tool>
+	<tool>bow</tool>
+	<tool>iron pickaxe</tool>
+	<tool>iron axe</tool>
+</toolrepair>
+<maxbuildheight>32</maxbuildheight>
+<timelock>on</timelock>
+<killreward>
+    <item amount="1" damage="8229">potion</item>
+</killreward>
+<tnt>
+    <instantignite>on</instantignite>
+</tnt>
+<tutorial>
+    <stage title="Capture the Wool">
+        <message>
+            <line>`rThis map is a `a`lCapture the Wool `r(CTW) map</line>
+            <line>The objective is to grab the wool on the other team's side and return it to your base.</line>
+        </message>
+        <teleport>
+            <point yaw="65" pitch="-20">260,29,173</point>
+        </teleport>
+    </stage>
+    <stage title="Enemy Teleporters">
+        <message>
+            <line>`rYou can break the enemy's `rRedstone`r block.</line>
+            <line>`rThere are `l4`r of these per side, and they disable the enemy's teleporters to their iron rooms!</line>
+        </message>
+        <teleport>
+            <point yaw="180" pitch="45">241,13,174</point>
+        </teleport>
+    </stage>    
+    <stage title="Spare Gold">
+        <message>
+            <line>`rIf the enemy has disabled all your teleporters, use the gold deposits here!</line>
+        </message>
+        <teleport>
+            <point yaw="10" pitch="0">230,13,180</point>
+        </teleport>
+    </stage>
+    <stage title="Iron Rooms">
+        <message>
+            <line>`rYour iron rooms are at your spawn and accessable via teleporters.</line>
+        </message>
+        <teleport>
+            <point yaw="152" pitch="0">225,21,153</point>
+        </teleport>
+    </stage>      
+    <stage title="Wool Placement">
+        <message>
+            <line>`rPlace the wool at your spawns!.</line>
+        </message>
+        <teleport>
+            <point yaw="90" pitch="10">232,17,150</point>
+        </teleport>
+    </stage>  
+</tutorial>
+</map>

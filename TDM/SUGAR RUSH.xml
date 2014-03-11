@@ -1,0 +1,90 @@
+<map proto="1.3.0">
+    <name>SUGAR RUSH</name>
+    <version>1.0.0</version>
+    <objective>Be the team with most kills after 10 minuets</objective>
+    <authors>
+        <author>zemphon</author>
+    </authors>
+    <contributors>
+        <contributor contribution="XML">orky48</contributor>
+    </contributors>
+    <teams>
+        <team color="dark red" max="25">Red Team</team>
+        <team color="blue" max="25">Blue Team</team>
+        <team color="green" max="25">Green Team</team>
+        <team color="yellow" max="25">Yellow Team</team>
+    </teams>
+    <kits>
+        <kit name="spawn">
+            <item slot="0" damage="-3000" enchantment="knockback:4">iron sword</item>
+            <item slot="1" damage="-3000" enchantment="ARROW_KNOCKBACK:2 ARROW_INFINITE:1">bow</item>
+            <item slot="28" amount="1">arrow</item>
+            <potion duration="54000" amplifier="3">speed</potion>
+            <potion duration="54000" amplifier="12">jump</potion>
+        </kit>
+        <kit name="blue" parents="spawn">
+            <helmet color="0066cc" damage="-3000">leather helmet</helmet>
+            <chestplate color="0066cc" damage="-3000">leather chestplate</chestplate>
+            <leggings color="0066cc" damage="-3000">leather chestplate</leggings>
+            <boots color="0066cc" damage="-3000">leather boot</boots>
+        </kit>
+        <kit name="red" parents="spawn">
+            <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+            <chestplate color="cd0000" damage="-3000">chain chestplate</chestplate>
+            <leggings color="cd0000" damage="-3000">chain leeggings</leggings>
+            <boots color="cd0000" damage="-3000">leather boot</boots>
+        </kit>
+        <kit name="green" parents="spawn">
+            <helmet color="667F33" damage="-3000">leather helmet</helmet>
+            <chestplate color="667F33" damage="-3000">chain chestplate</chestplate>
+            <leggings color="667F33" damage="-3000">chain leeggings</leggings>
+            <boots color="667F33" damage="-3000">leather boot</boots>
+        </kit>
+        <kit name="yellow" parents="spawn">
+            <helmet color="E5E533" damage="-3000">leather helmet</helmet>
+            <chestplate color="E5E533" damage="-3000">chain chestplate</chestplate>
+            <leggings color="E5E533" damage="-3000">chain leeggings</leggings>
+            <boots color="E5E533" damage="-3000">leather boot</boots>
+        </kit>
+    </kits>
+    <regions>
+        <apply block="deny-all">
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </apply>
+    </regions>
+    <spawns>
+        <spawn team="red" kit="red" yaw="-45">
+            <cuboid min="-347,42,-346" max="-351,42,-355"/>
+        </spawn>
+        <spawn team="blue" kit="blue" yaw="135">
+            <cuboid min="-237,42,-240" max="-241,42,-245"/>
+        </spawn>
+        <spawn team="yellowd" kit="yellow" yaw="45">
+            <cuboid min="-241,42,-351" max="-236,42,-355"/>
+        </spawn>
+        <spawn team="green" kit="green" yaw="-135">
+            <cuboid min="-346,42,-245" max="-351,42,-240"/>
+        </spawn>
+        <default yaw="0">
+            <cuboid min="-295,59,-300" max="-293,59,-296"/>
+        </default>
+    </spawns>
+    <score>
+        <time>600</time>
+    </score>
+    <timelock>on</timelock>
+    <toolrepair>
+        <tool>iron sword</tool>
+        <tool>bow</tool>
+        <tool>arrow</tool>
+    </toolrepair>
+    <itemremove>
+        <item>leather helmet</item>
+        <item>leather chestplate</item>
+        <item>leather leggings</item>
+        <item>leather boots</item>
+    </itemremove>
+    <hunger>
+        <depletion>off</depletion>
+    </hunger>
+</map>

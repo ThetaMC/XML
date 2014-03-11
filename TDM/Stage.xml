@@ -1,0 +1,70 @@
+<map proto="1.3.0">
+    <name>Stage</name>
+    <version>1.0.0</version>
+    <objective>Be the team with most kills after 10 minutes or first to 150</objective>
+    <authors>
+        <author>matic0basle</author>
+    </authors>
+    <contributors>
+        <contributor contribution="XML">orky48</contributor>
+    </contributors>
+    <teams>
+        <team color="dark red" max="16" max-overfill="20">Red Team</team>
+        <team color="blue" max="16" max-overfill="20">Blue Team</team>
+    </teams>
+    <kits>
+        <kit name="spawn">
+            <item slot="0" damage="-3000">iron sword</item>
+            <item slot="1" damage="-3000" enchantment="arrow infinte:1">bow</item>
+            <item slot="28" amount="1">arrow</item>
+            <item slot="2" amount="16">pumpkin pie</item>
+        </kit>
+        <kit name="blue" parents="spawn">
+            <helmet color="0066cc" damage="-3000">leather helmet</helmet>
+            <chestplate damage="-3000">chain chestplate</chestplate>
+            <leggings damage="-3000">chain leeggings</leggings>
+            <boots color="0066cc" damage="-3000">leather boot</boots>
+        </kit>
+        <kit name="red" parents="spawn">
+            <helmet color="cd0000" damage="-3000">leather helmet</helmet>
+            <chestplate damage="-3000">chain chestplate</chestplate>
+            <leggings damage="-3000">chain leeggings</leggings>
+            <boots color="cd0000" damage="-3000">leather boot</boots>
+        </kit>
+    </kits>
+    <regions>
+        <apply block="deny-all">
+            <rectangle min="-oo,-oo" max="oo,oo"/>
+        </apply>
+    </regions>
+    <spawns>
+        <spawn team="red" kit="red" yaw="0">
+            <cuboid min="31,10,-34" max="33,10,-31"/>
+        </spawn>
+        <spawn team="blue" kit="blue" yaw="-180">
+            <cuboid min="33,10,63" max="33,10,60"/>
+        </spawn>
+        <default yaw="90">
+            <block>14.5,20,14.5</block>
+        </default>
+    </spawns>
+    <score>
+        <time>600</time>
+        <limit>150</limit>
+    </score>
+    <timelock>on</timelock>
+    <killreward>
+        <item amount="1">golden apple</item>
+    </killreward>
+    <toolrepair>
+        <tool>arrow</tool>
+        <tool>iron sword</tool>
+        <tool>bow</tool>
+    </toolrepair>
+    <itemremove>
+        <item>leather helmet</item>
+        <item>chain chestplate</item>
+        <item>chain leggings</item>
+        <item>leather boots</item>
+    </itemremove>
+</map>
