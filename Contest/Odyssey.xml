@@ -75,7 +75,6 @@
     <filter name="only-blue">
         <team>blue</team>
     </filter>
-    <filters>
     <filter name="no-void" parents="allow-all">
         <deny><void/></deny>
     </filter>
