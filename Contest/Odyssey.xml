@@ -13,6 +13,111 @@
    <team color="dark red" max="15" max-overfill="25">Red Team</team>
    <team color="blue" max="15" max-overfill="25">Blue Team</team>
 </teams>
+<kits>
+    <kit name="spawn">
+        <item slot="0">iron sword</item>
+        <item slot="1" enchantment="arrow infinite:1">bow</item>
+        <item slot="28">arrow</item>
+        <item slot="2" enchantment="dig speed:2>iron axe"</item>
+        <item slot="3" enchantment="dig speed:2;durability:2>iron shovel"</item>
+        <item slot="4" damage="1" amount="32">log</item>
+        <item slot="5" amount="64">glass</item>
+        <item slot="7" amount="64">cookie</item>
+        <item slot="6">golden apple</item>
+        <chestplate enchantment="protection projectile:2">gold chestplate</chestplate>
+    </kit>
+    <kit name="red" parents="spawn">
+        <helmet color="cd0000">leather helmet</helmet>
+        <leggings color="cd0000">leather leggings</leggings>
+        <boots color="cd0000">leather boots</boots>
+    </kit>
+    <kit name="blue" parents="spawn">
+        <helmet color="0066cc">leather helmet</helmet>
+        <leggings color="0066cc">leather leggings</leggings>
+        <boots color="0066cc">leather boots</boots>
+    </kit>
+</kits>
+<spawns>
+    <spawn team="red" kit="red" yaw="0">
+        <cuboid min="173,10,-140" max="171,10,-138"/>
+    </spawn>
+    <spawn team="blue" kit="blue" yaw="180">
+        <cuboid min="171,10,70" max="173,10,68"/>
+    </spawn>
+    <default yaw="-90">
+        <cuboid min="124,28,-37" max="124,28,-33"/>
+    </default>
+</spawns>
+<toolrepair>
+    <tool>iron sword</tool>
+    <tool>bow</tool>
+    <tool>iron shovel</tool>
+    <tool>iron axe</tool>
+</toolrepair>
+<itemremove>
+    <item>arrow</item>
+    <item>cookie</item>
+    <item>leather helmet</item>
+    <item>gold chestplate</item>
+    <item>leather leggings</item>
+    <item>leather boots</item>
+    <item>glowstone</item>
+    <item>fence</item>
+    <item>gold block</item>
+    <item>golden apple</item>
+    <item>arrow</arrow>
+    <item>glass</item>
+</itemremove>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filters>
+    <filter name="no-void" parents="allow-all">
+        <deny><void/></deny>
+    </filter>
+</filters>
+<regions>
+    <apply block="no-void" message="You may not interact with the void!">
+        <negative>
+            <rectangle name="middle" min="142,-70" max="203,1"/>
+        </negative>
+    </apply>
+    <!-- Wools blue need to get -->
+    <union name="blue-wool-rooms">
+        <circle name="orange-wool" center="135.5,-135.5" radius="11"/>
+        <circle name="yellow-wool" center="209.5,-135.5" radius="11"/>
+    </union>
+    <!-- Wools red need to get -->
+    <union name="red-wool-rooms">
+        <circle name="magenta-wool" center="209.5,66.5" radius="11"/>
+        <circle name="lime-wool" center="135.5,66.5" radius="11"/>
+    </union>
+    <!--Wool protection for blue -->
+    <apply block="only-blue" message="You may not edit your own wool rooms!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <apply enter="only-blue" message="You may not enter your own wool rooms!">
+        <region name="blue-wool-rooms"/>
+    </apply>
+    <!--Wool protection for red -->
+    <apply block="only-red" message="You may not edit your own wool rooms!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <apply enter="only-red" message="You may not enter your own wool rooms!">
+        <region name="red-wool-rooms"/>
+    </apply>
+    <union name="spawns">
+        <rectangle name="blue-spawn" min="159,56" max="186,83"/>
+        <rectangle name="red-spawn" min="159,-126" max="186,-152"/>
+    </union>
+    <apply block="deny-all" message="You may not edit the spawns!">
+        <region name="spawns"/>
+    </apply>
+</regions>
 <wools team="red">
     <wool color="magenta">
         <block>174,11,-144</block>
@@ -29,61 +134,7 @@
         <block>170,11,75</block>
     </wool>
 </wools>
-<kits>
-        <kit name="spawn">
-                <item slot="0">iron sword</item>
-                <item slot="1" enchantment="arrow infinite:1">bow</item>
-                <item slot="28">arrow</item>
-                <item slot="2" enchantment="dig speed:2>iron axe</item>
-                <item slot="3" enchantment="dig speed:2;durability:2>iron shovel</item>
-                <item slot="4" damage="1" amount="32">log</item>
-                <item slot="5" amount="64">glass</item>
-                <item slot="7" amount="64">cookie</item>
-                <item slot="6">golden apple</item>
-                <chestplate> enchantment= protection projectile:2>gold chestplate</chestplate>
-        </kit>
-  <kit name="red" parents="spawn">
-                <helmet color="cd0000">leather helmet</helmet>
-                <leggings color="cd0000">leather leggings</leggings>
-                <boots color="cd0000">leather boots</boots>
-        </kit>
-        <kit name="blue" parents="spawn">
-                <helmet color="0066cc">leather helmet</helmet>
-                <leggings color="0066cc">leather leggings</leggings>
-                <boots color="0066cc">leather boots</boots>
-        </kit>
-</kits>
-<toolrepair>
-        <tool>iron sword</tool>
-        <tool>bow</tool>
-        <tool>iron shovel</tool>
-        <tool>iron axe</tool>
-</toolrepair>
-<itemremove>
-        <item>arrow</item>
-        <item>cookie</item>
-        <item>leather helmet</item>
-        <item>gold chestplate</item>
-        <item>leather leggings</item>
-        <item>leather boots</item>
-        <item>glowstone</item>
-        <item>fence</item>
-        <item>gold block</item>
-        <item>golden apple</item>
-        <item>arrow</arrow>
-        <item>glass</item>
-</itemremove>
 <timelock>on</timelock>
 <maxbuildheight>35</maxbuildheight>
 <difficulty>1</difficulty>
-<spawns>
-        <spawn team="red" kit="red" yaw="0">
-                <cuboid min="173,10,-140" max="171,10,-138"/>
-        </spawn>
-        <spawn team="blue" kit="blue" yaw="180">
-                <cuboid min="171,10,70" max="173,10,68"/>
-        </spawn>
-        <default yaw="-90">
-                <cuboid min="124,28,-37" max="124,28,-33"/>
-        </default>
-</spawns>
+</map>
