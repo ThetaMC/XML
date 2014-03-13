@@ -20,7 +20,7 @@
     <kit name="spawn">
         <item slot="0">stone sword</item>
         <item slot="1">bow</item>
-        <item slot="2" enchantment="dig speed:1" enchantment="durability:2">stone pickaxe</item>
+        <item slot="2" enchantment="dig speed:1;durability:2">stone pickaxe</item>
         <item slot="3" enchantment="durability:2">stone axe</item>
         <item slot="4" amount="64">stone bricks</item>
         <item slot="5" amount="32">birch logs</item>
