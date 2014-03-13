@@ -73,8 +73,8 @@
         <circle name="RR" center="-9,-8" radius="6"/>
         <circle name="RL" center="-67,-8" radius="6"/>
         <!--All directions are looking into center from spawn -->
-        <circle name="BR" center="-67,-119" radius="6"/>|
-        <circle name="BL" center="-9,-119" radius="6"/>|
+        <circle name="BR" center="-67,-119" radius="6"/>
+        <circle name="BL" center="-9,-119" radius="6"/>
     </union>
     <apply enter="only-blue" message="`7You may not enter the enemy wool room!">
         <region name="red-wool-rooms"/>
