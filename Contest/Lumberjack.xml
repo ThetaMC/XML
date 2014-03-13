@@ -50,7 +50,7 @@
     <filter name="no-void" parents="allow-all">
         <deny><void/></deny>
     </filter>
-    <filter name="only-gold"/>
+    <filter name="only-gold">
         <block>gold</block>
     </filter>
 </filters>
