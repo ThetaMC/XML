@@ -46,7 +46,7 @@
     </filter>
     <filter name="onl-blue">
         <team>blue</team>
-    <filter>
+    </filter>
     <filter name="no-void" parents="allow-all">
         <deny><void/></deny>
     </filter>
