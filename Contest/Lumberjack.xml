@@ -1,0 +1,175 @@
+<map proto="1.3.1">
+<name>Lumberjack</name>
+<version>1.0.0</version>
+<objective>Take the enemy's wool located to either side of the enemy's base and place it in your victory monument.</objective>
+<authors>
+    <author contribution="Building & Aesthetics">Arzanex</author>
+    <author contribution="Planning, Building & WorldEdit">MapleMint</author>
+</authors>
+<contributors>
+    <contributor contribution="Gameplay Advising/Feedback">LakeOfLava</contributor>
+    <contributor contribution="Moral Support and Feedback">Xstrem</contributor>
+</contributors>
+<teams>
+    <team color="blue" max="36" max-overfill="40">Blue Team</team>
+    <team color="dark red" max="36" max-overfill="40">Red Team</team>
+</teams>
+<wools team="red">
+    <wool color="light blue">                  
+        <block>-35.5,31,37.5</block>
+    </wool>
+    <wool color="cyan">
+        <block>-37.5,31,37.5</block>
+    </wool>
+    <wool color="green">
+        <block>-39.5,31,37.5</block>
+    </wool>
+</wools>
+<wools team="blue">
+    <wool color="purple">
+        <block>-39.5,31,-147.5</block>
+    </wool>
+    <wool olor="magenta">
+        <block>-37.5,31,-147.5</block>
+    </wool>
+    <wool color="pink">
+        <block>-35.5,31,-147.5</block>
+    </wool>
+</wools>
+<kits>
+    <kit name="spawn">
+        <item slot="0">stone sword</item>
+        <item slot="1">bow</item>
+        <item slot="2" enchantment="dig speed:1" enchantment="durability:2">stone pickaxe</item>
+        <item slot="3" enchantment="durability:2">stone axe</item>
+        <item slot="4" amount="64">stone bricks</item>
+        <item slot="5" amount="32">birch logs</item>
+        <item slot="6" amount="64">arrow</item>
+        <item slot="7" amount="16">pumpkin pie</item>
+        <item slot="8" amount="2">golden apple</item>
+    </kit>
+</kits>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="onl-blue">
+        <team>blue</team>
+    <filter>
+    <filter name="no-void" parents="allow-all">
+        <deny><void/></deny>
+    </filter>
+</filters>
+<regions>
+    <!--Definitions-->
+    <rectangle name="main-area" min="oo,oo" max="-oo,-oo">
+    <union name="blue-wool-rooms">            
+        <circle name="blue-woolroom-1" center="-75,-141" radius="7"/>
+        <circle name="blue-woolroom-2" center="0,-141" radius="7"/>
+    </union>
+    <union name="red-wool-rooms">            
+        <circle name="red-woolroom-1" center="0,31" radius="7"/>
+        <circle name="red-woolroom-2" center="-75,31" radius="7"/>
+    </union>
+    <cuboid name="red-portal-1" min="-52,30,12" max="-51,32,8"/>
+    <cuboid name="red-portal-2" min="-24,30,10" max="-20,32,11"/>
+    <cuboid name="red-portal-3" min="-22,30,29" max="-23,32,33"/>
+    <cuboid name="red-portal-4" min="-50,30,31" max="-54,32,30"/>
+    <cuboid name="red-portal-5" min="-2,29,7" max="-9,32,3"/>
+    <cuboid name="red-portal-6" min="-67,29,2" max="-71,32,9"/>
+    <cuboid name="blue-portal-1" min="-22,30,-122" max="-23,32,-118"/>
+    <cuboid name="blue-portal-2" min="-50,30,-120" max="-54,32,-121"/>
+    <cuboid name="blue-portal-3" min="-52,30,-139" max="-51,32,-143"/>
+    <cuboid name="blue-portal-4" min="-24,30,-141" max="-20,32,-140"/>
+    <cuboid name="blue-portal-5" min="-7,29,-112" max="-3,32,-119"/>
+    <cuboid name="blue-portal-6" min="-72,29,-117" max="-65,32,-113"/>
+                <apply enter="blue-woolroom" message="`7You may not enter the enemy wool room!">
+                        <region name="blue-woolroom-1"/>
+                </apply>
+                <apply enter="blue-woolroom" message="`7You may not enter the enemy wool room!">
+                        <region name="blue-woolroom-2"/>
+                </apply>
+                <apply block="blue-woolroom" message="`7You may not edit the enemy wool room!">
+                        <region name="blue-woolroom-1"/>
+                </apply>
+                <apply block="blue-woolroom" message="`7You may not edit the enemy wool room!">
+                        <region name="blue-woolroom-2"/>
+                </apply>
+                <apply enter="red-woolroom" message="`7You may not enter the enemy wool room!">
+                        <region name="red-woolroom-1"/>
+                </apply>
+                <apply enter="red-woolroom" message="`7You may not enter the enemy wool room!">
+                        <region name="red-woolroom-2"/>
+                </apply>
+                <apply block="red-woolroom" message="`7You may not edit the enemy wool room!">
+                        <region name="red-woolroom-1"/>
+                </apply>
+                <apply block="red-woolroom" message="`7You may not edit the enemy wool room!">
+                        <region name="red-woolroom-2"/>
+                </apply>
+                <apply block="no-void">
+                        <region name="main-area"/>
+                </apply>
+        </regions>
+        <portals>
+                <portal x="@-4" y="@29" z="@4">
+                        <region name="red-portal-2"/>
+                </portal>
+                <portal x="@-4" y="@29" z="@4">
+                        <region name="red-portal-3"/>
+                </portal>
+                <portal x="@-70" y="@29" z="@4">
+                        <region name="red-portal-1"/>
+                </portal>
+                <portal x="@-70" y="@29" z="@4">
+                        <region name="red-portal-4"/>
+                </portal>
+                <portal x="@-70" y="@29" z="-114">
+                        <region name="blue-portal-2"/>
+                </portal>
+                <portal x="@-70" y="@29" z="-114">
+                        <region name="blue-portal-3"/>
+                </portal>
+                <portal x="@-4" y="@29" z="@-114">
+                        <region name="blue-portal-1"/>
+                </portal>
+                <portal x="@-4" y="@29" z="@-114">
+                        <region name="blue-portal-4"/>
+                </portal>
+                <portal x="@-37" y="@32" z="@-131">
+                        <region name="blue-portal-5"/>
+                </portal>
+                <portal x="@-37" y="@32" z="@-131">
+                                <region name="blue-portal-6"/>
+                </portal>
+                <portal x="@-37" y="@32" z="@21">
+                                <region name="red-portal-5"/>
+                </portal>
+                <portal x="@-37" y="@32" z="@21">
+                        <region name="red-portal-6"/>
+                </portal>
+        </portals>
+        <toolrepair>
+                <item>stone sword</item>
+                <item>bow</item>
+                <item>stone pickaxe</item>
+                <item>stone axe</item>
+        </toolrepair>
+        <itemremove>
+                <item>pumpkin pie</item>
+        </itemremove>
+        <timelock>on</timelock>
+        <maxbuildheight>53</maxbuildheight>
+        <multitrade/>
+        <spawns>
+                <spawn team="red" kit="spawn" yaw="180">
+                <cuboid min="-38,33,21" max="-37,33,22"/>
+        </spawn>
+        <spawn team="blue" kit="spawn" yaw="0">
+                <cuboid min="-37,33,-131" max="-38,33,-132"/>
+        </spawn>
+        <default yaw="90">
+                <cylinder base="37,52,-54" radius="2" height="0"/>
+        </default>
+        </spawns>
+</map>
