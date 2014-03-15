@@ -76,7 +76,7 @@
     <apply enter="only-blue" message="You may not enter the other team's spawn!">
         <region name="blue-spawn"/>
     </apply>
-    <apply enter="only-blue" message="You may not enter the enemy team's iron mine!"/>
+    <apply enter="only-blue" message="You may not enter the enemy team's iron mine!">
         <cuboid min="-261,54,-294" max="-259,60,-294"/>
     </apply>
     <!-- Red Team Base-->
