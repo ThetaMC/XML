@@ -83,7 +83,7 @@
     <apply enter="only-red" message="You may not enter the other team's spawn!">
         <region name="red-spawn"/>
     </apply>
-    <apply enter="only-red" message="You may not enter the enemy team's iron mine!"/>
+    <apply enter="only-red" message="You may not enter the enemy team's iron mine!">
         <cuboid min="-351,58,-294" max="-353,54,-294"/>
     </apply>
     <!--Map boundry -->
