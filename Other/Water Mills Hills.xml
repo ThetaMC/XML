@@ -9,13 +9,9 @@
     <author>Supadude565</author>
     <author>Azinthu</author>
 </authors>
-<rules>
-    <rule>Do not block spawn</rule>
-    <rule>Do not go into the enemy team's base</rule>
-</rules>
 <teams>
     <team color="blue" max="12">Blue Team</team>
-    <team color="red" max="12">Red Team</team>
+    <team color="dark red" max="12">Red Team</team>
 </teams>
 <timelock>on</timelock>
 <kits>
