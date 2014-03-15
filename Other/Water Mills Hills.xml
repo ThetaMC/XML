@@ -1,7 +1,9 @@
 <map proto="1.3.2">
 <name>Water Mills Hills</name>
 <version>1.1.0</version>
-<objective>Break both of the enemy team's obsidian monuments</objective>
+<objective>
+    Break both of the enemy team's obsidian monuments
+</objective>
 <authors>
     <author>Aceman1998</author>
     <author>Supadude565</author>
@@ -10,7 +12,6 @@
 <rules>
     <rule>Do not block spawn</rule>
     <rule>Do not go into the enemy team's base</rule>
-    <rule>Spawn killing is not allowed</rule>
 </rules>
 <teams>
     <team color="blue" max="12">Blue Team</team>
@@ -56,38 +57,48 @@
             <void/>
         </deny>
     </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
 </filters>
 <regions>
+    <union name="spawns">
+        <circle name="blue-spawn" center="-246,-335" radius="7"/>
+        <circle name="red-spawn" center="-368,-335"  radius="7"/>
+    </union>
+    <apply block="deny-all" message="You may not destroy the team's spawn!">
+        <region name="spawns"/>
+    </apply>
     <!-- Blue Team Base-->
-    <apply enter="only-blue" message="You may not enter the enemy team's base!"/>
-        <cuboid min="-253,54,-336" max="-253,60,-334"/>
+    <apply enter="only-blue" message="You may not enter the other team's spawn!">
+        <region name="blue-spawn"/>
     </apply>
-    <apply enter="only-blue" message="You may not enter the enemy team's base!"/>
-        <cuboid min="-247,54,328" max="-245,60,-328"/>
-    </apply>
-    <apply enter="only-blue" message="You may not enter the enemy team's iron mines!"/>
+    <apply enter="only-blue" message="You may not enter the enemy team's iron mine!"/>
         <cuboid min="-261,54,-294" max="-259,60,-294"/>
     </apply>
     <!-- Red Team Base-->
-    <apply enter="only-red" message="You may not enter the enemy team's base!"/>
-        <cuboid min="-368,54,-327" max="-368,60,-327"/>
+    <apply enter="only-red" message="You may not enter the other team's spawn!">
+        <region name="red-spawn"/>
     </apply>
-    <apply enter="only-red" message="You may not enter the enemy team's base!"/>
-        <cuboid min="-341,54,-328" max="-339,60,-328"/>
+    <apply enter="only-red" message="You may not enter the enemy team's iron mine!"/>
+        <cuboid min="-351,58,-294" max="-353,54,-294"/>
     </apply>
-    <apply enter="only-red" message="You may not enter the enemy team's iron mines!"/>
-        <cuboid min="-351,58,-294" max="-353,54,-294"
+    <!--Map boundry -->
+    <apply block="deny-blocks" message="You may not build outside of the map!">
+        <negative>
+            <cuboid min="-347,48,-283" max="-239,88,-342"/>
+        </negative>
     </apply>
 </regions>
-<playable>
-    <cuboid min="-347,48,-283" max="-239,88,-342"/>
-</playable>
 <toolrepair>
     <tool>stone sword</tool>
     <tool>iron sword</tool>
     <tool>bow</tool>
-    <tool>iron axe</item>
-    <tool>diamond pickaxe</item>
+    <tool>iron axe</tool>
+    <tool>diamond pickaxe</tool>
 </toolrepair>
 <itemremove>
     <item>glass</item>
